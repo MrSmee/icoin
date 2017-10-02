@@ -49,7 +49,7 @@ QT_TRANSLATE_NOOP("icoin-core", ""
 "Execute command when the best block changes (%s in cmd is replaced by block "
 "hash)"),
 QT_TRANSLATE_NOOP("icoin-core", ""
-"Listen for JSON-RPC connections on <port> (default: 9332 or testnet: 19332)"),
+"Listen for JSON-RPC connections on <port> (default: 9888 or testnet: 19888)"),
 QT_TRANSLATE_NOOP("icoin-core", ""
 "Number of seconds to keep misbehaving peers from reconnecting (default: "
 "86400)"),
@@ -142,7 +142,7 @@ QT_TRANSLATE_NOOP("icoin-core", "Invalid amount for -mintxfee=<amount>: '%s'"),
 QT_TRANSLATE_NOOP("icoin-core", "Invalid amount for -paytxfee=<amount>: '%s'"),
 QT_TRANSLATE_NOOP("icoin-core", "Invalid amount"),
 QT_TRANSLATE_NOOP("icoin-core", "List commands"),
-QT_TRANSLATE_NOOP("icoin-core", "Listen for connections on <port> (default: 9333 or testnet: 19333)"),
+QT_TRANSLATE_NOOP("icoin-core", "Listen for connections on <port> (default: 9889 or testnet: 19889)"),
 QT_TRANSLATE_NOOP("icoin-core", "Loading addresses..."),
 QT_TRANSLATE_NOOP("icoin-core", "Loading block index..."),
 QT_TRANSLATE_NOOP("icoin-core", "Loading wallet..."),
