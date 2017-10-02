@@ -7,7 +7,7 @@
 
 #include <QStackedWidget>
 
-class BitcoinGUI;
+class iCoinGUI;
 class ClientModel;
 class WalletModel;
 class TransactionView;
@@ -33,16 +33,16 @@ class WalletView : public QStackedWidget
     Q_OBJECT
 
 public:
-    explicit WalletView(QWidget *parent, BitcoinGUI *_gui);
+    explicit WalletView(QWidget *parent, iCoinGUI *_gui);
     ~WalletView();
 
-    void setBitcoinGUI(BitcoinGUI *gui);
+    void setiCoinGUI(iCoinGUI *gui);
     /** Set the client model.
         The client model represents the part of the core that communicates with the P2P network, and is wallet-agnostic.
     */
     void setClientModel(ClientModel *clientModel);
     /** Set the wallet model.
-        The wallet model represents a bitcoin wallet, and offers access to the list of transactions, address book and sending
+        The wallet model represents a icoin wallet, and offers access to the list of transactions, address book and sending
         functionality.
     */
     void setWalletModel(WalletModel *walletModel);
@@ -52,7 +52,7 @@ public:
     void showOutOfSyncWarning(bool fShow);
 
 private:
-    BitcoinGUI *gui;
+    iCoinGUI *gui;
     ClientModel *clientModel;
     WalletModel *walletModel;
 

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=iCoin
+Comment=iCoin P2P Cryptocurrency
+Comment[fr]=iCoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=iCoin, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/icoin-qt %u
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/icoin128.png
+MimeType=x-scheme-handler/icoin;
+Categories=Office;

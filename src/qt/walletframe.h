@@ -7,7 +7,7 @@
 
 #include <QFrame>
 
-class BitcoinGUI;
+class iCoinGUI;
 class ClientModel;
 class WalletModel;
 class WalletStack;
@@ -18,7 +18,7 @@ class WalletFrame : public QFrame
     Q_OBJECT
 
 public:
-    explicit WalletFrame(BitcoinGUI *_gui = 0);
+    explicit WalletFrame(iCoinGUI *_gui = 0);
     ~WalletFrame();
 
     void setClientModel(ClientModel *clientModel);
@@ -33,7 +33,7 @@ public:
     void showOutOfSyncWarning(bool fShow);
 
 private:
-    BitcoinGUI *gui;
+    iCoinGUI *gui;
     ClientModel *clientModel;
     WalletStack *walletStack;
 

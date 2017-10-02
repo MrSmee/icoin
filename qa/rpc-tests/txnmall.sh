@@ -8,8 +8,8 @@ if [ $# -lt 1 ]; then
         exit 1
 fi
 
-BITCOIND=${1}/bitcoind
-CLI=${1}/bitcoin-cli
+ICOIND=${1}/icoind
+CLI=${1}/icoin-cli
 
 DIR="${BASH_SOURCE%/*}"
 SENDANDWAIT="${DIR}/send.sh"
@@ -23,25 +23,25 @@ D=$(mktemp -d test.XXXXX)
 
 D1=${D}/node1
 CreateDataDir $D1 port=11000 rpcport=11001
-B1ARGS="-datadir=$D1 -debug"
-$BITCOIND $B1ARGS &
-B1PID=$!
+I1ARGS="-datadir=$D1 -debug"
+$ICOIND $I1ARGS &
+I1PID=$!
 
 D2=${D}/node2
 CreateDataDir $D2 port=11010 rpcport=11011
-B2ARGS="-datadir=$D2 -debug"
-$BITCOIND $B2ARGS &
-B2PID=$!
+I2ARGS="-datadir=$D2 -debug"
+$ICOIND $I2ARGS &
+I2PID=$!
 
-trap "kill -9 $B1PID $B2PID; rm -rf $D" EXIT
+trap "kill -9 $I1PID $I2PID; rm -rf $D" EXIT
 
 # Wait until all four nodes are at the same block number
 function WaitBlocks {
     while :
     do
         sleep 1
-        BLOCKS1=$( GetBlocks $B1ARGS )
-        BLOCKS2=$( GetBlocks $B2ARGS )
+        BLOCKS1=$( GetBlocks $I1ARGS )
+        BLOCKS2=$( GetBlocks $I2ARGS )
         if (( $BLOCKS1 == $BLOCKS2 ))
         then
             break
@@ -62,38 +62,38 @@ function WaitPeers {
     done
 }
 
-# Start with B2 connected to B1:
-$CLI $B2ARGS addnode 127.0.0.1:11000 onetry
-WaitPeers "$B1ARGS" 1
+# Start with I2 connected to I1:
+$CLI $I2ARGS addnode 127.0.0.1:11000 onetry
+WaitPeers "$I1ARGS" 1
 
 # 1 block, 50 XBT each == 50 XBT
-$CLI $B1ARGS setgenerate true 1
+$CLI $I1ARGS setgenerate true 1
 
 WaitBlocks
 # 100 blocks, 0 mature == 0 XBT
-$CLI $B2ARGS setgenerate true 100
+$CLI $I2ARGS setgenerate true 100
 WaitBlocks
 
-CheckBalance $B1ARGS 50
-CheckBalance $B2ARGS 0
+CheckBalance $I1ARGS 50
+CheckBalance $I2ARGS 0
 
-# restart B2 with no connection
-$CLI $B2ARGS stop > /dev/null 2>&1
-wait $B2PID
-$BITCOIND $B2ARGS &
-B2PID=$!
+# restart I2 with no connection
+$CLI $I2ARGS stop > /dev/null 2>&1
+wait $I2PID
+$ICOIND $I2ARGS &
+I2PID=$!
 
-B2ADDRESS=$( $CLI $B2ARGS getnewaddress )
+I2ADDRESS=$( $CLI $I2ARGS getnewaddress )
 
-# Have B1 create two transactions; second will
-# spend change from first, since B1 starts with only a single
-# 50 bitcoin output:
-TXID1=$( $CLI $B1ARGS sendtoaddress $B2ADDRESS 1.0 )
-TXID2=$( $CLI $B1ARGS sendtoaddress $B2ADDRESS 2.0 )
+# Have I1 create two transactions; second will
+# spend change from first, since I1 starts with only a single
+# 50 icoin output:
+TXID1=$( $CLI $I1ARGS sendtoaddress $I2ADDRESS 1.0 )
+TXID2=$( $CLI $I1ARGS sendtoaddress $I2ADDRESS 2.0 )
 
-# Mutate TXID1 and add it to B2's memory pool:
-RAWTX1=$( $CLI $B1ARGS getrawtransaction $TXID1 )
-RAWTX2=$( $CLI $B1ARGS getrawtransaction $TXID2 )
+# Mutate TXID1 and add it to I2's memory pool:
+RAWTX1=$( $CLI $I1ARGS getrawtransaction $TXID1 )
+RAWTX2=$( $CLI $I1ARGS getrawtransaction $TXID2 )
 # ... mutate RAWTX1:
 # RAWTX1 is hex-encoded, serialized transaction. So each
 # byte is two characters; we'll prepend the first
@@ -112,31 +112,31 @@ RAWTX2=$( $CLI $B1ARGS getrawtransaction $TXID2 )
 L=${RAWTX1:82:2}
 NEWLEN=$( printf "%x" $(( 16#$L + 1 )) )
 MUTATEDTX1=${RAWTX1:0:82}${NEWLEN}4c${RAWTX1:84}
-# ... give mutated tx1 to B2:
-MUTATEDTXID=$( $CLI $B2ARGS sendrawtransaction $MUTATEDTX1 )
+# ... give mutated tx1 to I2:
+MUTATEDTXID=$( $CLI $I2ARGS sendrawtransaction $MUTATEDTX1 )
 
 echo "TXID1: " $TXID1
 echo "Mutated: " $MUTATEDTXID
 
-# Re-connect nodes, and have B2 mine a block
-$CLI $B2ARGS addnode 127.0.0.1:11000 onetry
-WaitPeers "$B1ARGS" 1
+# Re-connect nodes, and have I2 mine a block
+$CLI $I2ARGS addnode 127.0.0.1:11000 onetry
+WaitPeers "$I1ARGS" 1
 
-$CLI $B2ARGS setgenerate true 1
+$CLI $I2ARGS setgenerate true 1
 WaitBlocks
 
-$CLI $B2ARGS stop > /dev/null 2>&1
-wait $B2PID
-$CLI $B1ARGS stop > /dev/null 2>&1
-wait $B1PID
+$CLI $I2ARGS stop > /dev/null 2>&1
+wait $I2PID
+$CLI $I1ARGS stop > /dev/null 2>&1
+wait $I1PID
 
 trap "" EXIT
 
-echo "Done, bitcoind's shut down. To rerun/poke around:"
-echo "${1}/bitcoind -datadir=$D1 -daemon"
-echo "${1}/bitcoind -datadir=$D2 -daemon -connect=127.0.0.1:11000"
+echo "Done, icoind's shut down. To rerun/poke around:"
+echo "${1}/icoind -datadir=$D1 -daemon"
+echo "${1}/icoind -datadir=$D2 -daemon -connect=127.0.0.1:11000"
 echo "To cleanup:"
-echo "killall bitcoind; rm -rf test.*"
+echo "killall icoind; rm -rf test.*"
 exit 0
 
 echo "Tests successful, cleaning up"

@@ -7,7 +7,7 @@
 
 //
 // This class handles payment requests from clicking on
-// bitcoin: URIs
+// icoin: URIs
 //
 // This is somewhat tricky, because we have to deal with
 // the situation where the user clicks on a link during

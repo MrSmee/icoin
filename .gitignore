@@ -1,7 +1,7 @@
 src/*.exe
-src/litecoin
-src/litecoind
-src/test_litecoin
+src/icoin
+src/icoind
+src/test_icoin
 .*.swp
 *.*~*
 *.bak
@@ -9,17 +9,17 @@ src/test_litecoin
 *.orig
 *.o
 *.patch
-.litecoin
+.icoin
 
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-litecoin-qt
-Litecoin-Qt.app
+icoin-qt
+iCoin-Qt.app
 
 # Unit-tests
 Makefile.test
-litecoin-qt_test
+icoin-qt_test
 
 # Resources cpp
 qrc_*.cpp

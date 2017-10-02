@@ -31,12 +31,12 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_Main">
        <item>
-        <widget class="QCheckBox" name="bitcoinAtStartup">
+        <widget class="QCheckBox" name="icoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start Litecoin after logging in to the system.</string>
+          <string>Automatically start iCoin after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start Litecoin on system login</string>
+          <string>&amp;Start iCoin on system login</string>
          </property>
         </widget>
        </item>
@@ -119,7 +119,7 @@
           </widget>
          </item>
          <item>
-          <widget class="BitcoinAmountField" name="transactionFee"/>
+          <widget class="iCoinAmountField" name="transactionFee"/>
          </item>
          <item>
           <spacer name="horizontalSpacer_1_Main">
@@ -176,7 +176,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the Litecoin client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the iCoin client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -186,7 +186,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the Litecoin network through a SOCKS proxy (e.g. when connecting through Tor).</string>
+          <string>Connect to the iCoin network through a SOCKS proxy (e.g. when connecting through Tor).</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS proxy:</string>
@@ -360,7 +360,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting Litecoin.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting iCoin.</string>
            </property>
           </widget>
          </item>
@@ -393,7 +393,7 @@
        <item>
         <widget class="QCheckBox" name="displayAddresses">
          <property name="toolTip">
-          <string>Whether to show Litecoin addresses in the transaction list or not.</string>
+          <string>Whether to show iCoin addresses in the transaction list or not.</string>
          </property>
          <property name="text">
           <string>&amp;Display addresses in transaction list</string>
@@ -507,9 +507,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>BitcoinAmountField</class>
+   <class>iCoinAmountField</class>
    <extends>QSpinBox</extends>
-   <header>bitcoinamountfield.h</header>
+   <header>icoinamountfield.h</header>
   </customwidget>
   <customwidget>
    <class>QValueComboBox</class>

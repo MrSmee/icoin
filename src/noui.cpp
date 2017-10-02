@@ -5,7 +5,7 @@
 
 #include "ui_interface.h"
 #include "init.h"
-#include "bitcoinrpc.h"
+#include "icoinrpc.h"
 
 #include <string>
 
@@ -44,7 +44,7 @@ static void noui_InitMessage(const std::string &message)
 
 void noui_connect()
 {
-    // Connect bitcoind signal handlers
+    // Connect icoind signal handlers
     uiInterface.ThreadSafeMessageBox.connect(noui_ThreadSafeMessageBox);
     uiInterface.ThreadSafeAskFee.connect(noui_ThreadSafeAskFee);
     uiInterface.InitMessage.connect(noui_InitMessage);
