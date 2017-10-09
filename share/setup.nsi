@@ -5,7 +5,7 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.8.7.5
+!define VERSION 1.0.0.0
 !define COMPANY "iCoin project"
 !define URL http://www.icoin.world/
 

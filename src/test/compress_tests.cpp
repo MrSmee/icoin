@@ -14,8 +14,8 @@
 // amounts 1 .. 10000
 #define NUM_MULTIPLES_1ICN 10000
 
-// amounts 50 .. 21000000
-#define NUM_MULTIPLES_50ICN 420000
+// amounts 50 .. 500000000
+#define NUM_MULTIPLES_50ICN 10000000
 
 using namespace std;
 
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(compress_amounts)
     BOOST_CHECK(TestPair(         CENT,       0x7));
     BOOST_CHECK(TestPair(         COIN,       0x9));
     BOOST_CHECK(TestPair(      50*COIN,      0x32));
-    BOOST_CHECK(TestPair(21000000*COIN, 0x1406f40));
+    BOOST_CHECK(TestPair(500000000*COIN, 0x1dcd6500));
 
     for (uint64 i = 1; i <= NUM_MULTIPLES_UNIT; i++)
         BOOST_CHECK(TestEncode(i));

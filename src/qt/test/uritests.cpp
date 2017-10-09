@@ -46,7 +46,7 @@ void URITests::uriTests()
     QVERIFY(rv.address == QString("BYn7XhJG7Eyq38CLx4a3z2ZQ7AVpAoSw8j"));
     QVERIFY(rv.label == QString());
 
-    QVERIFY(GUIUtil::parseiCoinURI("icoin://BYn7XhJG7Eyq38CLx4a3z2ZQ7AVpAoSw8j?message=Wikipedia Example Address", &rv));
+    QVERIFY(GUIUtil::parseiCoinURI("icoin:BYn7XhJG7Eyq38CLx4a3z2ZQ7AVpAoSw8j?message=Wikipedia Example Address", &rv));
     QVERIFY(rv.address == QString("BYn7XhJG7Eyq38CLx4a3z2ZQ7AVpAoSw8j"));
     QVERIFY(rv.label == QString());
 

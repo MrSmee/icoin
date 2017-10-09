@@ -1407,8 +1407,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+34"/>
-        <source>The address to send the payment to (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>iCoin-adressen som betalingen skal sendes til (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>The address to send the payment to (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</source>
+        <translation>iCoin-adressen som betalingen skal sendes til (f.eks. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</translation>
     </message>
     <message>
         <location line="+60"/>
@@ -1448,8 +1448,8 @@ Adresse: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a iCoin address (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Indtast en iCoin-adresse (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>Enter a iCoin address (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</source>
+        <translation>Indtast en iCoin-adresse (f.eks. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</translation>
     </message>
 </context>
 <context>
@@ -1471,8 +1471,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+18"/>
-        <source>The address to sign the message with (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>iCoin-adressen som beskeden skal underskrives med (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>The address to sign the message with (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</source>
+        <translation>iCoin-adressen som beskeden skal underskrives med (f.eks. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1544,8 +1544,8 @@ Adresse: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>The address the message was signed with (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>iCoin-adressen som beskeden er underskrevet med (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>The address the message was signed with (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</source>
+        <translation>iCoin-adressen som beskeden er underskrevet med (f.eks. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -1565,8 +1565,8 @@ Adresse: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a iCoin address (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</source>
-        <translation>Indtast en iCoin-adresse (f.eks. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)</translation>
+        <source>Enter a iCoin address (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</source>
+        <translation>Indtast en iCoin-adresse (f.eks. BoQncybu3yMRCECd5241j324yKoV2XYNVK)</translation>
     </message>
     <message>
         <location line="-2"/>

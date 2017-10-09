@@ -14,11 +14,11 @@ Release Process
 
 ###tag version in git
 
-	git tag -s v0.8.7
+	git tag -s v1.0.0
 
 ###write release notes. git shortlog helps a lot, for example:
 
-	git shortlog --no-merges v0.7.2..v0.8.0
+	git shortlog --no-merges v0.8.7..v1.0.0
 
 * * *
 
@@ -27,20 +27,20 @@ Release Process
  From a directory containing the icoin source, gitian-builder and gitian.sigs
   
 	export SIGNER=(your gitian key, ie bluematt, sipa, etc)
-	export VERSION=0.8.7
+	export VERSION=1.0.0
 	cd ./gitian-builder
 
  Fetch and build inputs: (first time, or when dependency versions change)
 
 	mkdir -p inputs; cd inputs/
-	wget 'http://miniupnp.free.fr/files/download.php?file=miniupnpc-1.9.20140401.tar.gz' -O miniupnpc-1.9.20140401.tar.gz'
-	wget 'https://www.openssl.org/source/openssl-1.0.1k.tar.gz'
+	wget 'http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.20170509.tar.gz' -O miniupnpc-2.0.20170509.tar.gz'
+	wget 'https://www.openssl.org/source/openssl-1.0.2l.tar.gz'
 	wget 'http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz'
-	wget 'http://zlib.net/zlib-1.2.8.tar.gz'
-	wget 'ftp://ftp.simplesystems.org/pub/libpng/png/src/history/libpng16/libpng-1.6.8.tar.gz'
-	wget 'http://fukuchi.org/works/qrencode/qrencode-3.4.3.tar.bz2'
+	wget 'http://zlib.net/zlib-1.2.11.tar.gz'
+	wget 'ftp://ftp.simplesystems.org/pub/libpng/png/src/history/libpng16/libpng-1.6.32.tar.gz'
+	wget 'https://fukuchi.org/works/qrencode/qrencode-3.4.4.tar.bz2'
 	wget 'http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.bz2'
-	wget 'http://download.qt-project.org/official_releases/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz'
+	wget 'http://download.qt.io/official_releases/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz'
 	cd ..
 	./bin/gbuild ../icoin/contrib/gitian-descriptors/boost-win32.yml
 	mv build/out/boost-*.zip inputs/
@@ -66,33 +66,33 @@ Release Process
 
   Build output expected:
 
-  1. linux 32-bit and 64-bit binaries + source (icoin-${VERSION}-linux-gitian.zip)
-  2. windows 32-bit binary, installer + source (icoin-${VERSION}-win32-gitian.zip)
+  1. linux 32-bit and 64-bit binaries + source (icoin-${VERSION}-linux.zip)
+  2. windows 32-bit binary, installer + source (icoin-${VERSION}-win32.zip)
   3. Gitian signatures (in gitian.sigs/${VERSION}[-win32]/(your gitian key)/
 
 repackage gitian builds for release as stand-alone zip/tar/installer exe
 
 **Linux .tar.gz:**
 
-	unzip icoin-${VERSION}-linux-gitian.zip -d icoin-${VERSION}-linux
+	unzip icoin-${VERSION}-linux.zip -d icoin-${VERSION}-linux
 	tar czvf icoin-${VERSION}-linux.tar.gz icoin-${VERSION}-linux
 	rm -rf icoin-${VERSION}-linux
 
 **Windows .zip and setup.exe:**
 
-	unzip icoin-${VERSION}-win32-gitian.zip -d icoin-${VERSION}-win32
+	unzip icoin-${VERSION}-win32.zip -d icoin-${VERSION}-win32
 	mv icoin-${VERSION}-win32/icoin-*-setup.exe .
 	zip -r icoin-${VERSION}-win32.zip icoin-${VERSION}-win32
 	rm -rf icoin-${VERSION}-win32
 
 **Perform Mac build:**
 
-  OSX binaries are created on a dedicated 32-bit, OSX 10.6.8 machine.
-  iCoin 0.8.x is built with MacPorts.  0.9.x will be Homebrew only.
+  OSX binaries are created on a dedicated 64-bit, OSX 10.12.6 machine.
+  iCoin 1.0.x is built with Homebrew.
 
 	qmake RELEASE=1 USE_UPNP=1 USE_QRCODE=1
 	make
-	export QTDIR=/opt/local/share/qt4  # needed to find translations/qt_*.qm files
+	export QTDIR=/opt/local/libexec/qt5  # needed to find translations/qt_*.qm files
 	T=$(contrib/qt_translations.py $QTDIR/translations src/qt/locale)
 	python2.7 share/qt/clean_mac_info_plist.py
 	python2.7 contrib/macdeploy/macdeployqtplus iCoin-Qt.app -add-qt-tr $T -dmg -fancy contrib/macdeploy/fancy.plist

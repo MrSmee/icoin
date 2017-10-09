@@ -20,8 +20,8 @@ Build-Depends: debhelper,
  libqrencode-dev
 Standards-Version: 3.9.2
 Homepage: http://www.icoin.world/
-Vcs-Git: git://github.com/MrSmee/icoin.git
-Vcs-Browser: http://github.com/MrSmee/icoin
+Vcs-Git: git://github.com/icoin-project/icoin.git
+Vcs-Browser: http://github.com/icoin-project/icoin
 
 Package: icoind
 Architecture: any

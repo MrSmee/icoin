@@ -1,4 +1,4 @@
-iCoin 0.8.x BETA
+iCoin 1.0.x
 
 Copyright (c) 2009-2014 Bitcoin Developers
 Copyright (c) 2013-2017 iCoin Developers

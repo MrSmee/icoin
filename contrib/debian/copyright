@@ -3,7 +3,7 @@ Upstream-Name: iCoin
 Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
  irc://#icoin@freenode.net
 Source: http://sourceforge.net/projects/icoin/files/
- https://github.com/MrSmee/icoin
+ https://github.com/icoin-project/icoin
 
 Files: *
 Copyright: 2013-2017, iCoin Developers

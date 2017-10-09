@@ -11,15 +11,15 @@ packages:
 - "zip"
 - "faketime"
 - "psmisc"
-reference_datetime: "2011-01-30 00:00:00"
+reference_datetime: "2013-12-29 04:23:20"
 remotes: []
 files:
-- "openssl-1.0.1k.tar.gz"
+- "openssl-1.0.2l.tar.gz"
 - "db-4.8.30.NC.tar.gz"
-- "miniupnpc-1.9.20140401.tar.gz"
-- "zlib-1.2.8.tar.gz"
-- "libpng-1.6.8.tar.gz"
-- "qrencode-3.4.3.tar.bz2"
+- "miniupnpc-2.0.20170509.tar.gz"
+- "zlib-1.2.11.tar.gz"
+- "libpng-1.6.32.tar.gz"
+- "qrencode-3.4.4.tar.bz2"
 script: |
   #
   export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1
@@ -28,18 +28,18 @@ script: |
   export INSTALLPREFIX=$OUTDIR/staging/deps
   export HOST=i686-w64-mingw32
   # Integrity Check
-  echo "8f9faeaebad088e772f4ef5e38252d472be4d878c6b3a2718c10a4fcebe7a41c  openssl-1.0.1k.tar.gz"  | sha256sum -c
+  echo "ce07195b659e75f4e1db43552860070061f156a98bb37b672b101ba6e3ddf30c  openssl-1.0.2l.tar.gz"  | sha256sum -c
   echo "12edc0df75bf9abd7f82f821795bcee50f42cb2e5f76a6a281b85732798364ef  db-4.8.30.NC.tar.gz"    | sha256sum -c
-  echo "d02670112125300f7a3d61421714d99105edd90190bf12542d16785f16f017aa  miniupnpc-1.9.20140401.tar.gz"   | sha256sum -c
-  echo "36658cb768a54c1d4dec43c3116c27ed893e88b02ecfcb44f2166f9c0b7f2a0d  zlib-1.2.8.tar.gz"      | sha256sum -c
-  echo "32c7acf1608b9c8b71b743b9780adb7a7b347563dbfb4a5263761056da44cc96  libpng-1.6.8.tar.gz"    | sha256sum -c
-  echo "dfd71487513c871bad485806bfd1fdb304dedc84d2b01a8fb8e0940b50597a98  qrencode-3.4.3.tar.bz2" | sha256sum -c
+  echo "d3c368627f5cdfb66d3ebd64ca39ba54d6ff14a61966dbecb8dd296b7039f16a  miniupnpc-2.0.20170509.tar.gz"   | sha256sum -c
+  echo "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1  zlib-1.2.11.tar.gz"      | sha256sum -c
+  echo "1a8ae5c8eafad895cc3fce78fbcb6fdef663b8eb8375f04616e6496360093abb  libpng-1.6.32.tar.gz"    | sha256sum -c
+  echo "efe5188b1ddbcbf98763b819b146be6a90481aac30cfc8d858ab78a19cde1fa5  qrencode-3.4.4.tar.bz2" | sha256sum -c
 
   #
   mkdir -p $INSTALLPREFIX
 
-  tar xzf openssl-1.0.1k.tar.gz
-  cd openssl-1.0.1k
+  tar xzf openssl-1.0.2l.tar.gz
+  cd openssl-1.0.2l
   ./Configure --cross-compile-prefix=$HOST- mingw --openssldir=$INSTALLPREFIX
   make
   make install_sw
@@ -52,21 +52,21 @@ script: |
   make install_lib install_include
   cd ../..
   #
-  tar xzf miniupnpc-1.9.20140401.tar.gz
-  cd miniupnpc-1.9.20140401
+  tar xzf miniupnpc-2.0.20170509.tar.gz
+  cd miniupnpc-2.0.20170509
   echo "
-  --- miniupnpc-1.6/Makefile.mingw.orig   2013-09-29 18:52:51.014087958 -1000
-  +++ miniupnpc-1.6/Makefile.mingw        2013-09-29 19:09:29.663318691 -1000
-  @@ -67,8 +67,8 @@
+  --- miniupnpc-2.0.20170509/Makefile.mingw.orig  2016-01-19 04:26:58.000000000 -0600
+  +++ miniupnpc-2.0.20170509/Makefile.mingw       2017-09-17 02:16:44.656483442 -0500
+  @@ -74,8 +74,8 @@
    
    wingenminiupnpcstrings.o:	wingenminiupnpcstrings.c
    
   -miniupnpcstrings.h: miniupnpcstrings.h.in wingenminiupnpcstrings
   -	wingenminiupnpcstrings \$< \$@
-  +miniupnpcstrings.h: miniupnpcstrings.h.in 
+  +miniupnpcstrings.h: miniupnpcstrings.h.in
   +	sed -e 's|OS/version|MSWindows/5.1.2600|' -e 's|MINIUPNPC_VERSION_STRING \"version\"|MINIUPNPC_VERSION_STRING \"VERSIONHERE\"|' \$< > \$@
    
-   minixml.o:	minixml.c minixml.h miniupnpcstrings.h
+   minixml.o:	minixml.c minixml.h
    
   " | sed "s/VERSIONHERE/$(cat VERSION)/" | patch -p1
   mkdir -p dll
@@ -76,26 +76,26 @@ script: |
   install libminiupnpc.a  $INSTALLPREFIX/lib
   cd ..
   #
-  tar xzf zlib-1.2.8.tar.gz
-  cd zlib-1.2.8
+  tar xzf zlib-1.2.11.tar.gz
+  cd zlib-1.2.11
   CROSS_PREFIX=$HOST- ./configure --prefix=$INSTALLPREFIX --static
   make
   make install
   cd ..
   #
-  tar xzf libpng-1.6.8.tar.gz
-  cd libpng-1.6.8
+  tar xzf libpng-1.6.32.tar.gz
+  cd libpng-1.6.32
   CPPFLAGS="-I$INSTALLPREFIX/include" LDFLAGS="-L$INSTALLPREFIX/lib" ./configure --disable-shared --prefix=$INSTALLPREFIX --host=$HOST
   make $MAKEOPTS
   make install
   cd ..
   #
-  tar xjf qrencode-3.4.3.tar.bz2
-  cd qrencode-3.4.3
+  tar xjf qrencode-3.4.4.tar.bz2
+  cd qrencode-3.4.4
   png_CFLAGS="-I$INSTALLPREFIX/include" png_LIBS="-L$INSTALLPREFIX/lib -lpng" ./configure --prefix=$INSTALLPREFIX --host=$HOST
   make
   make install
   cd ..
   #
   cd $INSTALLPREFIX
-  zip -r $OUTDIR/icoin08-deps-win32-gitian-r13.zip include lib
+  zip -r $OUTDIR/icoin-deps-win32-gitian.zip include lib

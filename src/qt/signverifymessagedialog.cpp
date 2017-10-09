@@ -28,10 +28,10 @@ SignVerifyMessageDialog::SignVerifyMessageDialog(QWidget *parent) :
 
 #if (QT_VERSION >= 0x040700)
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->addressIn_SM->setPlaceholderText(tr("Enter a iCoin address (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)"));
+    ui->addressIn_SM->setPlaceholderText(tr("Enter a iCoin address (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)"));
     ui->signatureOut_SM->setPlaceholderText(tr("Click \"Sign Message\" to generate signature"));
 
-    ui->addressIn_VM->setPlaceholderText(tr("Enter a iCoin address (e.g. Ler4HNAEfwYhBmGXcFP2Po1NpRUEiK8km2)"));
+    ui->addressIn_VM->setPlaceholderText(tr("Enter a iCoin address (e.g. BoQncybu3yMRCECd5241j324yKoV2XYNVK)"));
     ui->signatureIn_VM->setPlaceholderText(tr("Enter iCoin signature"));
 #endif
 

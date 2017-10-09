@@ -1,7 +1,7 @@
 Utility to generate the pnSeed[] array that is compiled into the client
 (see src/net.cpp).
 
-The 600 seeds compiled into the 0.8 release were created from sipa's DNS seed data, like this:
+The 600 seeds compiled into the 1.0 release were created from sipa's DNS seed data, like this:
 
 curl -s http://bitcoin.sipa.be/seeds.txt | head -1000 | makeseeds.py
 
